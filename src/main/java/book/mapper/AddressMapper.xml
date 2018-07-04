@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="book.mapper.AddressMapper">
+    <insert id="insertAddress"></insert>
+    <update id="updateAddress"></update>
+    <delete id="deleteAddress"></delete>
+
+    <select id="getAddressById" resultType="book.model.Address">
+
+    </select>
+    <select id="getAddressNameByUserId" resultType="java.lang.String" parameterType="int">
+        SELECT content FROM `Address` WHERE userId = #{id}
+    </select>
+</mapper>

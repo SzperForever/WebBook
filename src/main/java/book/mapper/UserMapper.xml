@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="book.mapper.UserMapper">
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `User` (id, username, password, role, fails, email) VALUES (#{id},#{username},#{password},#{role},#{fails},#{email})
+    </insert>
+    <update id="updateUser"></update>
+    <delete id="deleteUserById" parameterType="int">
+        DELETE FROM `User` WHERE id = #{id}
+    </delete>
+    <select id="getUserById" resultType="User" parameterType="int">
+        SELECT * FROM `User` WHERE id = #{id}
+    </select>
+    <select id="getUserNameById" resultType="java.lang.String" parameterType="int">
+        SELECT username FROM `User` WHERE id = #{id}
+    </select>
+</mapper>

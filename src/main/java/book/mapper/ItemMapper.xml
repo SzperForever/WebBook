@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="book.mapper.ItemMapper">
+
+
+    <insert id="insertItem"></insert>
+    <update id="updateItem"></update>
+    <delete id="deleteItem"></delete>
+    <select id="getItemById" resultType="Item"></select>
+
+    <select id="getBooksByOrderId" resultType="book.model.Book" parameterType="int">
+        SELECT Book.* FROM `Book`,`Item` WHERE Book.id = (SELECT bookId FROM `Item` WHERE orderId = #{orderId})
+    </select>
+</mapper>
