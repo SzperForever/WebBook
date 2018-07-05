@@ -23,7 +23,10 @@ public class Order {
      * @param totalPrice 修改的价格
      * @return 仅用于修改价格的Order实例
      */
-    public static Order updateTotalPrice(int id,int totalPrice){
+    public static Order updateTotalPrice(int id,int totalPrice) throws Exception{
+        if(-1 == totalPrice){
+            throw new Exception("totalPrice 不允许为负值");
+        }
         Order order = new Order();
         order.setId(id);
         order.setAddressId(-1);
@@ -37,7 +40,10 @@ public class Order {
      * @param addressId 修改的地址
      * @return 仅用于修改地址的Order实例
      */
-    public static Order updateAddressId(int id,int addressId){
+    public static Order updateAddressId(int id,int addressId) throws Exception{
+        if(-1 == addressId){
+            throw new Exception("addressId 不允许为负值");
+        }
         Order order = new Order();
         order.setId(id);
         order.setAddressId(addressId);

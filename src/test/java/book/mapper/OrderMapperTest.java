@@ -2,8 +2,6 @@ package book.mapper;
 
 import book.model.BookInOrder;
 import book.model.Order;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -50,8 +48,13 @@ public class OrderMapperTest {
     @Test
     public void updateOrder() {
         // Order order = Order.updateAddressId(4,2);
-        Order order = Order.updateTotalPrice(4,1000);
-        Assert.assertTrue(orderMapper.updateOrder(order));
+        try {
+            Order order = Order.updateTotalPrice(4, 1000);
+            Assert.assertTrue(orderMapper.updateOrder(order));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -62,6 +65,6 @@ public class OrderMapperTest {
     @Test
     public void getOrderById() {
         Order order = orderMapper.getOrderById(6);
-        Assert.assertEquals("leehaoze",order.getUsername());
+        Assert.assertEquals("leehaoze", order.getUsername());
     }
 }
