@@ -2,16 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="book.mapper.OrderMapper">
     <resultMap id="OrderMapper" type="Order">
-        <association property="username" column="userId"  select="book.mapper.UserMapper.getUserNameById"/>
+        <id property="id" column="id"></id>
+        <result property="userId" column="userId"></result>
+        <result property="addressId" column="addressId"></result>
+        <association property="username" column="userId" select="book.mapper.UserMapper.getUserNameById"/>
         <association property="address" column="addressId" select="book.mapper.AddressMapper.getAddressNameByUserId"/>
         <association property="books" column="id" select="book.mapper.ItemMapper.getBooksByOrderId"/>
     </resultMap>
 
-    <insert id="insertOrder"></insert>
-    <update id="updateOrder"></update>
-    <delete id="deleteOrder"></delete>
+    <insert id="insertOrder" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `Order` (totalPrice, userId, addressId) VALUES (#{totalPrice},#{userId},#{addressId})
+    </insert>
+
+    <update id="updateOrder" parameterType="Order">
+        UPDATE `Order`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="totalPrice != -1">totalPrice=#{totalPrice},</if>
+            <if test="userId != -1">userId=#{userId},</if>
+            <if test="addressId != -1">addressId=#{addressId},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteOrder" parameterType="int">
+        DELETE FROM `Order` WHERE id = #{id}
+    </delete>
+
     <select id="getOrderById" resultMap="OrderMapper" parameterType="int">
         SELECT * FROM `Order` WHERE id = #{id}
     </select>
+
+    <select id="getAllOrder" resultMap="OrderMapper">
+        SELECT * FROM `Order`
+    </select>
+
 
 </mapper>
