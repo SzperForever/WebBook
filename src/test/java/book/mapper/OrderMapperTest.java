@@ -1,5 +1,6 @@
 package book.mapper;
 
+import book.model.BookInOrder;
 import book.model.Order;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.sun.tools.corba.se.idl.constExpr.Or;
@@ -30,6 +31,9 @@ public class OrderMapperTest {
         List<Order> orders = orderMapper.getAllOrder();
         for (Order order : orders) {
             System.out.println(order);
+            for (BookInOrder bookInOrder : order.getBooks()) {
+                System.out.println(bookInOrder.getName());
+            }
         }
     }
 

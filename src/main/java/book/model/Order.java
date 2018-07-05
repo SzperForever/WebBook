@@ -12,7 +12,7 @@ public class Order {
     private int addressId;
     private String username;
     private String address;
-    private List<Book> books;
+    private List<BookInOrder> books;
 
     /**
      * 不提共修改UserId

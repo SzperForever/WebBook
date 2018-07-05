@@ -3,12 +3,23 @@
 <mapper namespace="book.mapper.ItemMapper">
 
 
-    <insert id="insertItem"></insert>
-    <update id="updateItem"></update>
-    <delete id="deleteItem"></delete>
-    <select id="getItemById" resultType="Item"></select>
+    <insert id="insertItem" parameterType="int" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `Item` (orderId,bookId,num) VALUES (#{orderId},#{bookId},#{num})
+    </insert>
+    <update id="updateItem" parameterType="Item">
+        UPDATE `Item` SET num = #{num} WHERE orderId = #{orderId} AND bookId = #{bookId}
+    </update>
+    <delete id="deleteItem" parameterType="int">
+        DELETE FROM `Item` WHERE id = #{id}
+    </delete>
+    <select id="getItemById" resultType="Item" parameterType="int">
+        SELECT * FROM `Item` WHERE id = #{id}
+    </select>
 
-    <select id="getBooksByOrderId" resultType="book.model.Book" parameterType="int">
-        SELECT Book.* FROM `Book`,`Item` WHERE Book.id = (SELECT bookId FROM `Item` WHERE orderId = #{orderId})
+    <select id="getBooksByOrderId" resultType="book.model.BookInOrder" parameterType="int">
+        SELECT Book.* ,Item.num FROM `Book`,`Item` WHERE Book.id = (SELECT bookId FROM `Item` WHERE orderId = #{orderId})
+    </select>
+    <select id="getAllItem" resultType="book.model.Item">
+        SELECT * FROM `Item`
     </select>
 </mapper>
