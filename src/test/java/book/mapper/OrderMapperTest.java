@@ -49,7 +49,7 @@ public class OrderMapperTest {
     public void updateOrder() {
         // Order order = Order.updateAddressId(4,2);
         try {
-            Order order = Order.updateTotalPrice(4, 1000);
+            Order order = Order.updateTotalPrice(6, 1000);
             Assert.assertTrue(orderMapper.updateOrder(order));
         }
         catch (Exception e){

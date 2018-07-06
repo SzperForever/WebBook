@@ -1,5 +1,7 @@
 package book.model;
 
+
+
 import lombok.Data;
 
 import java.util.List;
@@ -13,6 +15,8 @@ public class Order {
     private String username;
     private String address;
     private List<BookInOrder> books;
+
+
 
     /**
      * 不提共修改UserId
