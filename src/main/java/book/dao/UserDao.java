@@ -3,9 +3,11 @@ package book.dao;
 import book.mapper.UserMapper;
 import book.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class UserDao implements BaseDao<User>{
     @Autowired
     UserMapper userMapper;

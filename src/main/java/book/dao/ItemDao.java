@@ -3,9 +3,11 @@ package book.dao;
 import book.mapper.ItemMapper;
 import book.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class ItemDao implements BaseDao<Item> {
     @Autowired
     ItemMapper itemMapper;

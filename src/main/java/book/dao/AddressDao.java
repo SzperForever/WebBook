@@ -3,9 +3,11 @@ package book.dao;
 import book.mapper.AddressMapper;
 import book.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class AddressDao implements BaseDao<Address> {
     @Autowired
     AddressMapper addressMapper;
