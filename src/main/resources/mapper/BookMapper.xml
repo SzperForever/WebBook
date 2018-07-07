@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="book.dao.BookDao">
     <insert id="insertBook">
-        INSERT INTO `Book` (name, price, stock, img_path, discount) VALUES (#{name}, #{price}, #{stock}, #{imgPath}, #{discount})
+        INSERT INTO `Book` (name, price, stock, img_path, discount) VALUES (#{name}, #{price}, #{stock}, #{imgPath},
+        #{discount})
     </insert>
     <update id="updateBook" parameterType="Book">
         UPDATE `Book`
@@ -16,11 +17,11 @@
         WHERE id = #{id}
     </update>
     <delete id="deleteBook">
-        DELETE  FROM `Book` WHERE id=#{id}
+        DELETE FROM `Book` WHERE id=#{id}
     </delete>
     <select id="getBookById" resultType="book.model.Book" parameterType="int">
         SELECT * FROM `Book` WHERE id = #{id}
-    </select> 
+    </select>
     <select id="getAllBooks" resultType="book.model.Book">
         SELECT * FROM `Book`
     </select>

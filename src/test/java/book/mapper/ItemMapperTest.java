@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/bean.xml", "classpath:spring/spring-mvc.xml"})
 public class ItemMapperTest {
@@ -39,7 +37,7 @@ public class ItemMapperTest {
 
     @Test
     public void updateItem() {
-        Item item = Item.updateNum(1,1,5);
+        Item item = Item.updateNum(1, 1, 5);
         Assert.assertTrue(itemMapper.updateItem(item));
     }
 

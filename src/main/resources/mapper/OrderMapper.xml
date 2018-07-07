@@ -5,9 +5,9 @@
         <id property="id" column="id"></id>
         <result property="userId" column="userId"></result>
         <result property="addressId" column="addressId"></result>
-        <association property="username" column="userId" select="book.mapper.UserMapper.getUserNameById"/>
-        <association property="address" column="addressId" select="book.mapper.AddressMapper.getAddressNameByUserId"/>
-        <association property="books" column="id" select="book.mapper.ItemMapper.getBooksByOrderId"/>
+        <association property="username" column="userId" select="book.dao.UserDao.getUserNameById"/>
+        <association property="address" column="addressId" select="book.dao.AddressDao.getAddressNameByUserId"/>
+        <association property="books" column="id" select="book.dao.ItemDao.getBooksByOrderId"/>
     </resultMap>
 
     <insert id="insertOrder" useGeneratedKeys="true" keyProperty="id">

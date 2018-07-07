@@ -3,7 +3,8 @@
 <mapper namespace="book.dao.UserDao">
 
     <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO `User` (username, password, role, fails, email) VALUES (#{username},#{password},#{role},#{fails},#{email})
+        INSERT INTO `User` (username, password, role, fails, email) VALUES
+        (#{username},#{password},#{role},#{fails},#{email})
     </insert>
     <update id="updateUser" parameterType="User">
         UPDATE `User`

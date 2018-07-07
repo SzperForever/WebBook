@@ -16,7 +16,7 @@ import java.util.List;
 //配置spring和junit整合，这样junit在启动时就会加载spring容器
 @RunWith(SpringJUnit4ClassRunner.class)
 //告诉junit spring的配置文件
-@ContextConfiguration({"classpath:spring/bean.xml","classpath:spring/spring-mvc.xml"})
+@ContextConfiguration({"classpath:spring/bean.xml", "classpath:spring/spring-mvc.xml"})
 public class UserMapperTest {
     @Autowired
     private UserDao userDao;
@@ -34,9 +34,9 @@ public class UserMapperTest {
     public void insertUser() {
         try {
             User user = User.newInsertInstance("ShaoZhuPeng", "199804", 1, "123456789@qq.com");
-            boolean result =  userDao.insertUser(user);
+            boolean result = userDao.insertUser(user);
             Assert.assertTrue(result);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -44,11 +44,10 @@ public class UserMapperTest {
     @Test
     public void updateUser() {
         try {
-            User user = User.newUpdateInstance(3,null,null,1,null);
+            User user = User.newUpdateInstance(3, null, null, 1, null);
             boolean result = userDao.updateUser(user);
             Assert.assertTrue(result);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -64,7 +63,7 @@ public class UserMapperTest {
     }
 
     @After
-    public void ShowResults(){
+    public void ShowResults() {
         List<User> users = userDao.getAllUser();
         for (User user : users) {
             System.out.println(user);

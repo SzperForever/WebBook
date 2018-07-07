@@ -17,7 +17,8 @@
     </select>
 
     <select id="getBooksByOrderId" resultType="book.model.BookInOrder" parameterType="int">
-        SELECT Book.* ,Item.num FROM `Book`,`Item` WHERE Book.id = (SELECT bookId FROM `Item` WHERE orderId = #{orderId})
+        SELECT Book.* ,Item.num FROM `Book`,`Item` WHERE Book.id = (SELECT bookId FROM `Item` WHERE orderId =
+        #{orderId})
     </select>
     <select id="getAllItem" resultType="book.model.Item">
         SELECT * FROM `Item`

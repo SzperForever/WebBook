@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/bean.xml","classpath:spring/spring-mvc.xml"})
+@ContextConfiguration({"classpath:spring/bean.xml", "classpath:spring/spring-mvc.xml"})
 public class AddressMapperTest {
     @Autowired
     AddressDao addressDao;
@@ -35,13 +35,13 @@ public class AddressMapperTest {
 
     @Test
     public void insertAddress() {
-        Address address = Address.newInstance(1,"shankeda");
-        Assert.assertTrue( addressDao.insertAddress(address));
+        Address address = Address.newInstance(1, "shankeda");
+        Assert.assertTrue(addressDao.insertAddress(address));
     }
 
     @Test
     public void updateAddress() {
-        Address address = Address.updateContent(1,"SDUST");
+        Address address = Address.updateContent(1, "SDUST");
         Assert.assertTrue(addressDao.updateAddress(address));
     }
 

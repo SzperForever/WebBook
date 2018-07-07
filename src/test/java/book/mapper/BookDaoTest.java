@@ -1,4 +1,5 @@
 package book.mapper;
+
 import book.dao.BookDao;
 import book.model.Book;
 import org.junit.*;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class BookDaoTest {
     @Autowired
     BookDao bookMapper;
+
     @Before
     public void setUp() throws Exception {
     }
@@ -22,20 +24,23 @@ public class BookDaoTest {
             System.out.println(book);
         }
     }
+
     @Test
-    public void updateBook(){
+    public void updateBook() {
         Book book = Book.updateName(3, "4Book");
         Assert.assertTrue(bookMapper.updateBook(book));
     }
+
     @Test
-    public  void InsertBook(){
+    public void InsertBook() {
         Book book = new Book();
         book = Book.createBook("3Book", 34.6, 40, "d", 9);
         Assert.assertTrue(bookMapper.insertBook(book));
 
     }
+
     @Test
-    public void deleteBook(){
+    public void deleteBook() {
         Assert.assertTrue(bookMapper.deleteBook(2));
 
     }

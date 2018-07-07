@@ -6,10 +6,14 @@ import java.util.List;
 
 public interface UserDao {
     User getUserById(int id);
+
     boolean insertUser(User user);
+
     boolean updateUser(User user);
+
     boolean deleteUserById(int id);
 
     String getUserNameById(int id);
+
     List<User> getAllUser();
 }

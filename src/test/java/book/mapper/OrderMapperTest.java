@@ -52,8 +52,7 @@ public class OrderMapperTest {
         try {
             Order order = Order.updateTotalPrice(6, 1000);
             Assert.assertTrue(orderMapper.updateOrder(order));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

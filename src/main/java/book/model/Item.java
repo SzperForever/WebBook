@@ -17,7 +17,7 @@ public class Item {
         return item;
     }
 
-    public static Item getNewInstance(int orderId,int bookId,int num){
+    public static Item getNewInstance(int orderId, int bookId, int num) {
         Item item = new Item();
         item.setOrderId(orderId);
         item.setBookId(bookId);
