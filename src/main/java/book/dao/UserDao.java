@@ -1,39 +1,15 @@
 package book.dao;
 
-import book.mapper.UserMapper;
 import book.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public class UserDao implements BaseDao<User>{
-    @Autowired
-    UserMapper userMapper;
+public interface UserDao {
+    User getUserById(int id);
+    boolean insertUser(User user);
+    boolean updateUser(User user);
+    boolean deleteUserById(int id);
 
-    @Override
-    public boolean add(User user) {
-        return false;
-    }
-
-    @Override
-    public User getElementById(int id) {
-        return userMapper.getUserById(id);
-    }
-
-    @Override
-    public boolean update(User user) {
-        return userMapper.updateUser(user);
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return userMapper.deleteUserById(id);
-    }
-
-    @Override
-    public List<User> getAllElements() {
-        return userMapper.getAllUser();
-    }
+    String getUserNameById(int id);
+    List<User> getAllUser();
 }

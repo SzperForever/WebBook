@@ -1,5 +1,6 @@
 package book.mapper;
 
+import book.dao.UserDao;
 import book.model.User;
 import org.junit.After;
 import org.junit.Assert;
@@ -18,7 +19,7 @@ import java.util.List;
 @ContextConfiguration({"classpath:spring/bean.xml","classpath:spring/spring-mvc.xml"})
 public class UserMapperTest {
     @Autowired
-    private UserMapper userMapper;
+    private UserDao userDao;
 
     @Before
     public void setUp() throws Exception {
@@ -26,14 +27,14 @@ public class UserMapperTest {
 
     @Test
     public void getUserById() {
-        System.out.println(userMapper.getUserById(1));
+        System.out.println(userDao.getUserById(1));
     }
 
     @Test
     public void insertUser() {
         try {
             User user = User.newInsertInstance("ShaoZhuPeng", "199804", 1, "123456789@qq.com");
-            boolean result =  userMapper.insertUser(user);
+            boolean result =  userDao.insertUser(user);
             Assert.assertTrue(result);
         } catch (Exception e){
             e.printStackTrace();
@@ -44,7 +45,7 @@ public class UserMapperTest {
     public void updateUser() {
         try {
             User user = User.newUpdateInstance(3,null,null,1,null);
-            boolean result = userMapper.updateUser(user);
+            boolean result = userDao.updateUser(user);
             Assert.assertTrue(result);
         }
         catch (Exception e){
@@ -54,17 +55,17 @@ public class UserMapperTest {
 
     @Test
     public void deleteUserById() {
-        Assert.assertTrue(userMapper.deleteUserById(2));
+        Assert.assertTrue(userDao.deleteUserById(2));
     }
 
     @Test
     public void getUserNameById() {
-        Assert.assertEquals("leehaoze", userMapper.getUserNameById(1));
+        Assert.assertEquals("leehaoze", userDao.getUserNameById(1));
     }
 
     @After
     public void ShowResults(){
-        List<User> users = userMapper.getAllUser();
+        List<User> users = userDao.getAllUser();
         for (User user : users) {
             System.out.println(user);
         }

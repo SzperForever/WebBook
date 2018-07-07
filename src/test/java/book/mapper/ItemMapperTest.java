@@ -1,5 +1,6 @@
 package book.mapper;
 
+import book.dao.ItemDao;
 import book.model.BookInOrder;
 import book.model.Item;
 import org.junit.After;
@@ -17,7 +18,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration({"classpath:spring/bean.xml", "classpath:spring/spring-mvc.xml"})
 public class ItemMapperTest {
     @Autowired
-    ItemMapper itemMapper;
+    ItemDao itemMapper;
 
     @Before
     public void setUp() throws Exception {

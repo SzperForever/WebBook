@@ -1,5 +1,6 @@
 package book.mapper;
 
+import book.dao.AddressDao;
 import book.model.Address;
 import org.junit.After;
 import org.junit.Assert;
@@ -14,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration({"classpath:spring/bean.xml","classpath:spring/spring-mvc.xml"})
 public class AddressMapperTest {
     @Autowired
-    AddressMapper addressMapper;
+    AddressDao addressDao;
 
     @Before
     public void setUp() throws Exception {
@@ -22,35 +23,35 @@ public class AddressMapperTest {
 
     @After
     public void tearDown() throws Exception {
-        for (Address address : addressMapper.getAllAddress()) {
+        for (Address address : addressDao.getAllAddress()) {
             System.out.println(address);
         }
     }
 
     @Test
     public void getAddressById() {
-        System.out.println(addressMapper.getAddressById(1));
+        System.out.println(addressDao.getAddressById(1));
     }
 
     @Test
     public void insertAddress() {
         Address address = Address.newInstance(1,"shankeda");
-        Assert.assertTrue( addressMapper.insertAddress(address));
+        Assert.assertTrue( addressDao.insertAddress(address));
     }
 
     @Test
     public void updateAddress() {
         Address address = Address.updateContent(1,"SDUST");
-        Assert.assertTrue(addressMapper.updateAddress(address));
+        Assert.assertTrue(addressDao.updateAddress(address));
     }
 
     @Test
     public void deleteAddress() {
-        Assert.assertTrue(addressMapper.deleteAddress(2));
+        Assert.assertTrue(addressDao.deleteAddress(2));
     }
 
     @Test
     public void getAddressNameByUserId() {
-        Assert.assertEquals("SDUST",addressMapper.getAddressNameByUserId(1));
+        Assert.assertEquals("SDUST", addressDao.getAddressNameByUserId(1));
     }
 }
