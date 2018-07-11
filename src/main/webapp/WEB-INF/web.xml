@@ -8,6 +8,16 @@
         id="WebApp_ID" version="2.5">
     <display-name>Archetype Created Web Application</display-name>
 
+
+    <filter>
+        <filter-name>cros</filter-name>
+        <filter-class>book.util.CORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>cros</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!-- 配置spring的字符编码过滤器，保证request请求的中文字符不会乱码（注意这个过滤器要放到最前面） -->
     <filter>
         <filter-name>CharacterEncoding</filter-name>

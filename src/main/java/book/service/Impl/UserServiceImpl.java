@@ -14,6 +14,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User loginAuth(String username, String password) throws RuntimeException {
         User user = userDao.getUserByName(username);
+        if(user == null){
+            throw  new RuntimeException("User doesn't exist");
+        }
         if(user.getPassword().equals(password)){
             return user;
         }

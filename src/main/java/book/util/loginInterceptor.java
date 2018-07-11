@@ -27,7 +27,7 @@ public class loginInterceptor implements HandlerInterceptor {
         String url = requestUri.substring(contextPath.length());
 
 
-        if (url.equals("/login") || url.equals("/loginAuth") || url.contains("/css") || url.contains("/js") || url.contains("/img") ) {
+        if (url.contains("/login") || url.contains("/loginAuth") || url.contains("/css") || url.contains("/js") || url.contains("/img") ) {
             return true;
         }
 
