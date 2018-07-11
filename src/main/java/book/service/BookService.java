@@ -1,19 +1,14 @@
 package book.service;
 
 import book.model.Book;
-
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface BookService {
+    List<Book> getAllBook();
 
-    public boolean Add(Book book);
+    Book getBookByID(int id);
 
-    public boolean update(Book book);
-
-    public boolean delete(int id);
-
-    public List<Book> getAllElements();
-
-    public Book getElementById(int id);
 }

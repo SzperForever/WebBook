@@ -20,4 +20,7 @@
     <select id="getAllAddress" resultType="book.model.Address">
         SELECT * FROM `Address`
     </select>
+    <select id="getAllAddressByUserId" resultType="book.model.Address" parameterType="int">
+        SELECT * FROM `Address` WHERE userId = #{userID}
+    </select>
 </mapper>

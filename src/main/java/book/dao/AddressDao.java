@@ -22,4 +22,6 @@ public interface AddressDao {
     String getAddressNameByUserId(int userId);
 
     List<Address> getAllAddress();
+
+    List<Address> getAllAddressByUserId(int userID);
 }

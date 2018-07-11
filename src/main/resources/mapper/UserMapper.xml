@@ -29,4 +29,9 @@
     <select id="getAllUser" resultType="book.model.User">
         SELECT * FROM `User`
     </select>
+    <select id="getUserByName" resultType="book.model.User">
+        SELECT * FROM `User` WHERE username = #{username}
+    </select>
+
+
 </mapper>

@@ -22,12 +22,12 @@ public class BookServiceTest {
     }
     @After
     public void tearDown() throws Exception {
-        for (Book book : bookService.getAllElements()) {
+        for (Book book : bookService.getAllBook()) {
             System.out.println(book);
         }
     }
     public boolean Test(){
-        List<Book> lists = bookService.getAllElements();
+        List<Book> lists = bookService.getAllBook();
         for(Book book : lists){
             System.out.println(book.getName());
         }

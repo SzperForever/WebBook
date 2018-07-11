@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class Order {
     private int id;
-    private int totalPrice;
+    private double totalPrice;
     private int userId;
     private int addressId;
     private String username;
@@ -24,7 +24,7 @@ public class Order {
      * @param totalPrice 修改的价格
      * @return 仅用于修改价格的Order实例
      */
-    public static Order updateTotalPrice(int id, int totalPrice) throws Exception {
+    public static Order updateTotalPrice(int id, double totalPrice) throws Exception {
         if (-1 == totalPrice) {
             throw new Exception("totalPrice 不允许为负值");
         }
@@ -52,7 +52,7 @@ public class Order {
         return order;
     }
 
-    public static Order newInstance(int totalPrice, int addressId, int userId) throws Exception {
+    public static Order newInstance(double totalPrice, int addressId, int userId) throws Exception {
         if (-1 == totalPrice || -1 == addressId || -1 == userId) {
             throw new Exception("参数不允许为负值");
         }

@@ -35,6 +35,9 @@
     <select id="getAllOrder" resultMap="OrderMapper">
         SELECT * FROM `Order`
     </select>
+    <select id="getAllOrderByUserId" resultType="book.model.Order" parameterType="int">
+        SELECT * FROM `Order` WHERE userId = #{userId}
+    </select>
 
 
 </mapper>

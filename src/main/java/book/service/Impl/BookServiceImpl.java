@@ -11,30 +11,15 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
-    BookDao bookMapper;
+    BookDao bookDao;
 
     @Override
-    public boolean Add(Book book) {
-        return false;
+    public List<Book> getAllBook() {
+        return bookDao.getAllBooks();
     }
 
     @Override
-    public boolean update(Book book) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
-
-    @Override
-    public List<Book> getAllElements() {
-        return bookMapper.getAllBooks();
-    }
-
-    @Override
-    public Book getElementById(int id) {
-        return bookMapper.getBookById(id);
+    public Book getBookByID(int id) {
+        return bookDao.getBookById(id);
     }
 }

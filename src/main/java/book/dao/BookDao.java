@@ -14,4 +14,5 @@ public interface BookDao {
     boolean deleteBook(int id);
 
     ArrayList<Book> getAllBooks();
+
 }

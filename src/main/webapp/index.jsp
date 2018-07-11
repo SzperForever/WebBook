@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<script src="js/jquery-1.12.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
     function submit() {
         var username = $("#userName").val();
