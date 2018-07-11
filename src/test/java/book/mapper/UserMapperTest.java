@@ -69,4 +69,13 @@ public class UserMapperTest {
             System.out.println(user);
         }
     }
+    boolean Test(){
+        User user  = userDao.getUserByName("leehaoze");
+        System.out.println(user);
+        return true;
+    }
+    @Test
+    public void findByName(){
+        Assert.assertTrue(Test());
+    }
 }

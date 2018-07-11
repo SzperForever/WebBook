@@ -14,12 +14,36 @@ public class OrderServiceImpl implements OrderService {
     OrderDao orderDao;
 
     @Override
-    public boolean addOrder(Order order) {
-        return orderDao.insertOrder(order);
+    public Order addOrder(Order order) {
+        if(order == null){
+            throw new RuntimeException("订单为空");
+        }
+        if(orderDao.insertOrder(order) == false){
+            throw new RuntimeException("创建订单失败");
+        }
+        if(orderDao.insertOrder(order) == true){
+            order.setStatus(-1);
+        }
+        return order;
     }
 
     @Override
     public List<Order> getAllOrder(int userId) {
         return orderDao.getAllOrderByUserId(userId);
+    }
+
+    @Override
+    public boolean changeOrderStatus(int OrderId) {
+        Order order = orderDao.getOrderById(OrderId);
+        if(order == null){
+            throw new RuntimeException("订单不存在");
+        }
+        return true;
+    }
+
+    @Override
+    public Order getOrderById(int id) {
+
+        return orderDao.getOrderById(id);
     }
 }

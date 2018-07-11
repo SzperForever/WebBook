@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface AddressService {
     List<Address> getAllAddressByUserId(int userId);
+    boolean addAddress(Address address);
 }

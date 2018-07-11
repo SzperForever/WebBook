@@ -5,6 +5,7 @@ import book.model.Order;
 import book.model.User;
 import book.service.ItemService;
 import book.service.OrderService;
+import book.vo.MsgInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,6 +62,29 @@ public class OrderController {
         User user = ((User) httpSession.getAttribute("user"));
         List<Order> orders = orderService.getAllOrder(user.getId());
         return orders;
+    }
+    @RequestMapping(value = "/changeOrderStatus", method = RequestMethod.POST)
+    @ResponseBody
+    public MsgInfo changeStatus(int OrderId, int virginState, int status){
+        MsgInfo msgInfo = new MsgInfo();
+        Order order = orderService.getOrderById(OrderId);
+        order.setStatus(virginState);
+        if(status != virginState){
+            order.setStatus(status);
+            if(virginState == -1 && status == 0){
+                msgInfo.setCode(1);
+                msgInfo.setMsg("发货成功");
+            }
+            if(virginState == 0 && status == 1){
+                msgInfo.setCode(1);
+                msgInfo.setMsg("收货成功");
+            }
+        }
+        else{
+            msgInfo.setCode(0);
+            msgInfo.setMsg("订单状态已是最新");
+        }
+        return msgInfo;
     }
 
 }

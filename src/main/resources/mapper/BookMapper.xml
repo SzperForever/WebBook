@@ -25,5 +25,10 @@
     <select id="getAllBooks" resultType="book.model.Book">
         SELECT * FROM `Book`
     </select>
-
+    <select id="getStockById" resultType="int" parameterType="int">
+        SELECT stock from `Book` where id = #{id}
+    </select>
+    <select id="getPageBooks" resultType="book.model.Book" parameterType="java.util.HashMap">
+        select * from `Book` LIMIT #{start}, #{end}
+    </select>
 </mapper>

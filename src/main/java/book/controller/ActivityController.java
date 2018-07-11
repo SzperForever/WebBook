@@ -1,18 +1,10 @@
 package book.controller;
 
-import book.service.LoginService;
-import book.vo.MsgInfo;
-import org.junit.runners.Parameterized;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ActivityController {
-    @Autowired
+    /*@Autowired
     LoginService loginService;
     @RequestMapping(value="/Login", method = RequestMethod.POST)
     @ResponseBody
@@ -29,6 +21,6 @@ public class ActivityController {
             msgInfo.setMsg(e.getMessage());
         }
         return msgInfo;
-    }
+    }*/
 
 }

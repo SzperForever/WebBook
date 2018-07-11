@@ -1,6 +1,7 @@
 package book.mapper;
 
 import book.dao.BookDao;
+import book.model.Address;
 import book.model.Book;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -44,4 +45,13 @@ public class BookDaoTest {
         Assert.assertTrue(bookMapper.deleteBook(2));
 
     }
+    public boolean Test(){
+        System.out.println("stock: " + bookMapper.getStockById(3));
+        return true;
+    }
+    @Test
+    public void getStock(){
+        Assert.assertTrue(Test());
+    }
+
 }

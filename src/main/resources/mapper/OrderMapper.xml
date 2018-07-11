@@ -13,7 +13,6 @@
     <insert id="insertOrder" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `Order` (totalPrice, userId, addressId) VALUES (#{totalPrice},#{userId},#{addressId})
     </insert>
-
     <update id="updateOrder" parameterType="Order">
         UPDATE `Order`
         <trim prefix="SET" suffixOverrides=",">

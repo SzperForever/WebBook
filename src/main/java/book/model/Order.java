@@ -14,6 +14,7 @@ public class Order {
     private String username;
     private String address;
     private List<BookInOrder> books;
+    private int status;
 
 
     /**
@@ -60,6 +61,10 @@ public class Order {
         order.setTotalPrice(totalPrice);
         order.setUserId(userId);
         order.setAddressId(addressId);
+        return order;
+    }
+    public static Order changeStatus(int status, int virginState){
+        Order order = new Order();
         return order;
     }
 

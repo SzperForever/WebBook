@@ -4,11 +4,13 @@ import book.model.Book;
 import book.model.BookInOrder;
 import book.service.BookService;
 import book.vo.MsgInfo;
+import book.vo.PageJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,12 +38,17 @@ public class BookController {
         }
 
         List<BookInOrder>  bookInOrders = (List<BookInOrder>)httpSession.getAttribute("cart");
-        System.out.println("session:"+ bookInOrders);
         Book book = bookService.getBookByID(bookId);
-        //System.out.println(book);
+        int stock = bookService.getStockById(bookId);
         for (BookInOrder bookInOrder : bookInOrders){
             if(book.getId() == bookInOrder.getId()){
-                bookInOrder.setNum(bookInOrder.getNum() + 1);
+                int sum = bookInOrder.getNum() + 1;
+                if(stock < sum){
+                    msgInfo.setCode(0);
+                    msgInfo.setMsg("库存不足");
+                    return msgInfo;
+                }
+                bookInOrder.setNum(sum);
                 httpSession.setAttribute("cart", bookInOrders);
                 msgInfo.setCode(1);
                 msgInfo.setMsg("Success");
@@ -49,10 +56,8 @@ public class BookController {
             }
         }
         BookInOrder book1 = BookInOrder.getNewInstance(book, 1);
-        //bookInOrders.add(BookInOrder.getNewInstance(book, 1));
         bookInOrders.add(book1);
         httpSession.setAttribute("cart", bookInOrders);
-        System.out.println("BookInOrders: " + bookInOrders.get(0).getName());
         msgInfo.setCode(1);
         msgInfo.setMsg("Success");
         return msgInfo;
@@ -61,8 +66,21 @@ public class BookController {
     @RequestMapping(value = "getCartBooks")
     @ResponseBody
     public List<BookInOrder>  getCartBooks(HttpSession httpSession){
-        System.out.println("Session: "  + httpSession.getAttribute("cart"));
         return (List<BookInOrder>)httpSession.getAttribute("cart");
     }
+    @RequestMapping(value = "pageInfo")
+    @ResponseBody
+    public ArrayList<Book> getPageInfo(PageJson pageJson){
+        return bookService.getPageBooks(pageJson);
+    }
+    @RequestMapping(value = "pageInfos")
+    @ResponseBody
+    public ArrayList<Book> getPageInfos(){
+        PageJson pageJson = new PageJson();
+        pageJson.setPage(1);
+        pageJson.setSize(5);
+        return bookService.getPageBooks(pageJson);
+    }
+
 
 }
