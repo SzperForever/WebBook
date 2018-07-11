@@ -35,6 +35,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getElementById(int id) {
-        return null;
+        return bookMapper.getBookById(id);
     }
 }
