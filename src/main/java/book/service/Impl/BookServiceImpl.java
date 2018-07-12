@@ -6,6 +6,7 @@ import book.service.BookService;
 import book.vo.PageJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sun.jvm.hotspot.debugger.Page;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
+@Transactional
 public class BookServiceImpl implements BookService {
     @Autowired
     BookDao bookDao;

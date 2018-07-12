@@ -32,10 +32,10 @@ public class User {
         return user;
     }
 
-    public static User newInsertInstance(String username, String password, int role, String email) throws Exception {
+    public static User newInsertInstance(String username, String password, String email) throws Exception {
         if (username == null || password == null || email == null) {
             throw new NullPointerException("参数不允许存在null");
         }
-        return new User(username, password, role, email);
+        return new User(username, password, 0, email);
     }
 }

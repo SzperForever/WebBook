@@ -5,8 +5,10 @@ import book.model.User;
 import book.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
@@ -23,6 +25,26 @@ public class UserServiceImpl implements UserService {
         else{
             throw new RuntimeException("Password doesn't match");
         }
+    }
+
+    @Override
+    public boolean registerAuth(User user) {
+        if(user == null){
+            throw new RuntimeException("用户为空");
+        }
+        else if(userDao.getUserByName(user.getUsername()) != null){
+            throw new RuntimeException("用户已经存在");
+        }
+        else{
+            userDao.insertUser(user);
+            return true;
+        }
+    }
+
+    @Override
+    public boolean deleteUser(int id) {
+        userDao.deleteUserById(id);
+        return true;
     }
 }
 

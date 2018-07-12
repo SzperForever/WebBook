@@ -33,7 +33,7 @@ public class UserMapperTest {
     @Test
     public void insertUser() {
         try {
-            User user = User.newInsertInstance("ShaoZhuPeng", "199804", 1, "123456789@qq.com");
+            User user = User.newInsertInstance("ShaoZhuPeng", "199804", "123456789@qq.com");
             boolean result = userDao.insertUser(user);
             Assert.assertTrue(result);
         } catch (Exception e) {
