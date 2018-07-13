@@ -63,7 +63,7 @@ public class BookController {
         return msgInfo;
     }
 
-    @RequestMapping(value = "getCartBooks")
+    @RequestMapping(value = "/getCartBooks")
     @ResponseBody
     public List<BookInOrder>  getCartBooks(HttpSession httpSession){
         return (List<BookInOrder>)httpSession.getAttribute("cart");
@@ -81,6 +81,4 @@ public class BookController {
         pageJson.setSize(5);
         return bookService.getPageBooks(pageJson);
     }
-
-
 }
