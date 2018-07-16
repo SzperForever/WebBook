@@ -7,10 +7,8 @@ import book.vo.PageJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.jvm.hotspot.debugger.Page;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -38,4 +36,11 @@ public class BookServiceImpl implements BookService {
     public ArrayList<Book> getPageBooks(PageJson pageJson) {
         return bookDao.getPageBooks(PageJson.pageInfo(pageJson));
     }
+
+    @Override
+    public boolean updateBook(Book book) {
+        return bookDao.updateBook(book);
+    }
+
+
 }

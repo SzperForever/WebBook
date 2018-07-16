@@ -63,6 +63,13 @@ public class BookController {
         return msgInfo;
     }
 
+    @RequestMapping(value="/deleteBookById", method = RequestMethod.POST)
+    @ResponseBody
+    public Boolean deleteBookById(Integer id){
+        Book book = Book.newDeleteBook(id);
+        return bookService.updateBook(book);
+    }
+
     @RequestMapping(value = "/getCartBooks")
     @ResponseBody
     public List<BookInOrder>  getCartBooks(HttpSession httpSession){

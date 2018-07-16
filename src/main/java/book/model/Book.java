@@ -22,6 +22,17 @@ public class Book {
         return book;
     }
 
+    public static Book newDeleteBook(int id){
+        Book book = new Book();
+        book.setId(id);
+        book.setName(null);
+        book.setDiscount(-1);
+        book.setImgPath(null);
+        book.setStock(-1);
+        book.setPrice(-1);
+        return book;
+    }
+
     public static Book createBook(String name, double price, int stock, String imgPath, int discount) {
         Book book = new Book();
         book.setName(name);
