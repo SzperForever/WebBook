@@ -32,6 +32,13 @@ public class User {
         return user;
     }
 
+    public static User newLockInstance(int id, int fails){
+        User user = new User();
+        user.setId(id);
+        user.setFails(fails);
+        return user;
+    }
+
     public static User newInsertInstance(String username, String password, String email) throws Exception {
         if (username == null || password == null || email == null) {
             throw new NullPointerException("参数不允许存在null");

@@ -1,19 +1,18 @@
 package book.controller;
 
-import book.model.BookInOrder;
 import book.model.Order;
-import book.model.User;
 import book.service.ItemService;
 import book.service.OrderService;
+import book.vo.BookJson;
 import book.vo.MsgInfo;
+import book.vo.OrderJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,24 +24,30 @@ public class OrderController {
     @Autowired
     ItemService itemService;
 
-    @RequestMapping(value = "/submitOrder/{addressID}", method = RequestMethod.POST)
+    @RequestMapping(value = "/submitOrder", method = RequestMethod.POST)
     @ResponseBody
-    public HashMap<String,String> submitOrder(HttpSession httpSession, @PathVariable("addressID")Integer addressId){
-        HashMap<String,String> result = new HashMap<>();
+    public HashMap<String,String> submitOrder(@RequestBody OrderJson orderJson){
+        System.err.println("userID : " + orderJson.getUserId());
+        System.err.println("addresID : " + orderJson.getAddressId());
+        System.err.println("price : " + orderJson.getPrice());
 
-        List<BookInOrder> books = ((List<BookInOrder>) httpSession.getAttribute("chart"));
-        User user = (User)httpSession.getAttribute("user");
-
-        double totalPrice = 0;
-        for (BookInOrder book : books) {
-            totalPrice += book.getPrice() * book.getNum();
+        for (BookJson bookJson : orderJson.getBooks()) {
+            System.err.println(bookJson.getId());
         }
 
+        HashMap<String,String> result = new HashMap<>();
+
+
+        double totalPrice = orderJson.getPrice();
+
         try{
-            Order order = Order.newInstance(totalPrice,addressId,user.getId());
+            Order order = Order.newInstance(totalPrice,orderJson.getAddressId(),orderJson.getUserId());
             orderService.addOrder(order);
-            for (BookInOrder book : books) {
-                itemService.addItem(order.getId(),book.getId(),book.getNum());
+            for (BookJson book : orderJson.getBooks()) {
+                boolean insertResult = itemService.addItem(order.getId(),book.getId(),book.getNum());
+                if(insertResult == false){
+                    throw new Exception("插入Item失败");
+                }
             }
             result.put("state","success");
             return result;
@@ -58,9 +63,8 @@ public class OrderController {
 
     @RequestMapping(value = "/getAllOrder",method = RequestMethod.POST)
     @ResponseBody
-    public List<Order> getAllOrder(HttpSession httpSession){
-        User user = ((User) httpSession.getAttribute("user"));
-        List<Order> orders = orderService.getAllOrder(user.getId());
+    public List<Order> getAllOrder(Integer userId){
+        List<Order> orders = orderService.getAllOrder(userId);
         return orders;
     }
     @RequestMapping(value = "/changeOrderStatus", method = RequestMethod.POST)

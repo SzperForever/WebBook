@@ -6,7 +6,9 @@ import book.vo.MsgInfo;
 import book.vo.UserJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -22,8 +24,8 @@ public class LoginController {
         HashMap<String, String> hashMap = new HashMap<>();
         try {
             User user = userService.loginAuth(username, password);
-            httpSession.setAttribute("user", user);
             hashMap.put("state", "success");
+            hashMap.put("reason", user.getId()+"");
         } catch (Exception e) {
             hashMap.put("state", "fail");
             e.printStackTrace();
@@ -32,6 +34,7 @@ public class LoginController {
             return hashMap;
         }
     }
+
     @RequestMapping(value = "registerAuth", method = RequestMethod.POST)
     @ResponseBody
     public MsgInfo registerAuth(UserJson userJson){
@@ -50,5 +53,12 @@ public class LoginController {
         return msgInfo;
     }
 
+    @RequestMapping(value = "lockUser", method = RequestMethod.POST)
+    @ResponseBody
+    public void lockStatus(String username){
+
+        userService.updateUser(User.newLockInstance(userService.getUserByName(username).getId(),3));
+
+    }
 
 }

@@ -20,10 +20,14 @@ public class OrderServiceImpl implements OrderService {
         if(order == null){
             throw new RuntimeException("订单为空");
         }
-        if(orderDao.insertOrder(order) == false){
+
+        boolean result = orderDao.insertOrder(order);
+
+
+        if(result == false){
             throw new RuntimeException("创建订单失败");
         }
-        if(orderDao.insertOrder(order) == true){
+        if(result == true){
             order.setStatus(-1);
         }
         return order;

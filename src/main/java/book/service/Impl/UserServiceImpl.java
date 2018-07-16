@@ -19,12 +19,22 @@ public class UserServiceImpl implements UserService {
         if(user == null){
             throw  new RuntimeException("User doesn't exist");
         }
+
+        if(user.getFails() >= 3){
+            throw new RuntimeException("账户已被锁定");
+        }
+
         if(user.getPassword().equals(password)){
             return user;
         }
         else{
             throw new RuntimeException("Password doesn't match");
         }
+    }
+
+    @Override
+    public User getUserByName(String username) {
+        return userDao.getUserByName(username);
     }
 
     @Override
@@ -46,5 +56,12 @@ public class UserServiceImpl implements UserService {
         userDao.deleteUserById(id);
         return true;
     }
+
+    @Override
+    public boolean updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+
 }
 
