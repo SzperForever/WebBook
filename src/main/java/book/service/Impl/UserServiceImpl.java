@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -53,13 +55,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean deleteUser(int id) {
-        userDao.deleteUserById(id);
-        return true;
+
+        boolean result = userDao.deleteUserById(id);
+        if(result == false){
+            throw new RuntimeException("删除用户失败");
+        }
+        else
+            return true;
     }
 
     @Override
     public boolean updateUser(User user) {
         return userDao.updateUser(user);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUser();
+    }
+
+    @Override
+    public boolean unlockUser(int id) {
+        boolean result = userDao.unLockUser(id);
+        if(result == false) {
+            throw new RuntimeException("解锁失败");
+        }
+        else
+            return true;
     }
 
 

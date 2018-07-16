@@ -52,4 +52,9 @@ public class OrderServiceImpl implements OrderService {
 
         return orderDao.getOrderById(id);
     }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderDao.getAllOrder();
+    }
 }

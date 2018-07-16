@@ -1,6 +1,7 @@
 package book.dao;
 
 import book.model.Book;
+import book.vo.BookInfo;
 import book.vo.PageJson;
 
 import java.util.ArrayList;
@@ -18,5 +19,6 @@ public interface BookDao {
     ArrayList<Book> getAllBooks();
     int getStockById(int id);
     ArrayList<Book> getPageBooks(HashMap hashMap);
+    boolean updateBookInfo(BookInfo bookInfo);
 
 }

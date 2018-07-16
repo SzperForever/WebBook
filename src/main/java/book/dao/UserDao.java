@@ -1,6 +1,7 @@
 package book.dao;
 
 import book.model.User;
+import book.vo.BookInfo;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface UserDao {
     User getUserByName(String name);
 
     List<User> getAllUser();
+    boolean unLockUser(int id);
+
 }

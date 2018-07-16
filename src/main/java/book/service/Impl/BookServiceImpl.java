@@ -3,6 +3,7 @@ package book.service.Impl;
 import book.dao.BookDao;
 import book.model.Book;
 import book.service.BookService;
+import book.vo.BookInfo;
 import book.vo.PageJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public boolean updateBook(Book book) {
         return bookDao.updateBook(book);
+    }
+
+    @Override
+    public boolean updateBookInfo(BookInfo bookInfo) {
+        boolean result = bookDao.updateBookInfo(bookInfo);
+        if(result == false){
+            throw new RuntimeException("更新书籍信息失败");
+        }
+        else
+            return true;
     }
 
 

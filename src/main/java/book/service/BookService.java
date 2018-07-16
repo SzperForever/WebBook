@@ -1,6 +1,7 @@
 package book.service;
 
 import book.model.Book;
+import book.vo.BookInfo;
 import book.vo.PageJson;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,5 @@ public interface BookService {
     int getStockById(int id);
     ArrayList<Book> getPageBooks(PageJson pageJson);
     boolean updateBook(Book book);
+    boolean updateBookInfo(BookInfo bookInfo);
 }

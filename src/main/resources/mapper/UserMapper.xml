@@ -32,6 +32,9 @@
     <select id="getUserByName" resultType="book.model.User">
         SELECT * FROM `User` WHERE username = #{username}
     </select>
+    <update id="unLockUser" parameterType="int">
+        UPDATE `User` set fails = 0 where id = #{id}
+    </update>
 
 
 </mapper>

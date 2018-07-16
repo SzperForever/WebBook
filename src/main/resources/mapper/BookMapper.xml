@@ -31,4 +31,7 @@
     <select id="getPageBooks" resultType="book.model.Book" parameterType="java.util.HashMap">
         select * from `Book` LIMIT #{start}, #{end}
     </select>
+    <update id="updateBookInfo" parameterType="book.vo.BookInfo">
+        update `Book` set name=#{name}, price = #{price}, stock = #{stock} where id=#{id}
+    </update>
 </mapper>

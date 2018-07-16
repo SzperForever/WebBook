@@ -3,6 +3,7 @@ package book.controller;
 import book.model.Book;
 import book.model.BookInOrder;
 import book.service.BookService;
+import book.vo.BookInfo;
 import book.vo.MsgInfo;
 import book.vo.PageJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,5 +88,20 @@ public class BookController {
         pageJson.setPage(1);
         pageJson.setSize(5);
         return bookService.getPageBooks(pageJson);
+    }
+    @RequestMapping(value = "updateBook", method = RequestMethod.POST)
+    @ResponseBody
+    public MsgInfo updateBook(BookInfo bookInfo){
+        MsgInfo msgInfo = new MsgInfo();
+        try{
+            bookService.updateBookInfo(bookInfo);
+            msgInfo.setCode(1);
+            msgInfo.setMsg("更新图书成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            msgInfo.setCode(0);
+            msgInfo.setMsg(e.getMessage());
+        }
+        return msgInfo;
     }
 }

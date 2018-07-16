@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -89,6 +90,11 @@ public class OrderController {
             msgInfo.setMsg("订单状态已是最新");
         }
         return msgInfo;
+    }
+    @RequestMapping(value="getAllOrders")
+    @ResponseBody
+    public List<Order> getAllOrders(){
+        return orderService.getAllOrders();
     }
 
 }

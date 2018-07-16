@@ -10,5 +10,6 @@ public interface OrderService {
     List<Order> getAllOrder(int userId);
     boolean changeOrderStatus(int OrderId);
     Order getOrderById(int id);
+    List<Order> getAllOrders();
 
 }

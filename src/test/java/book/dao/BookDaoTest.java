@@ -1,6 +1,7 @@
 package book.dao;
 
 import book.model.Book;
+import book.vo.BookInfo;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -40,5 +41,14 @@ public class BookDaoTest {
     @Test
     public void getAllTest(){
         Assert.assertTrue(this.Test());
+    }
+    @Test
+    public void updateBook() {
+        BookInfo bookInfo = new BookInfo();
+        bookInfo.setId(3);
+        bookInfo.setName("BOosdfs");
+        bookInfo.setPrice(888);
+        bookInfo.setStock(1000);
+        Assert.assertTrue(bookDao.updateBookInfo(bookInfo));
     }
 }
