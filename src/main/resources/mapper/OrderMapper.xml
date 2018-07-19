@@ -11,7 +11,7 @@
     </resultMap>
 
     <insert id="insertOrder" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO `Order` (totalPrice, userId, addressId) VALUES (#{totalPrice},#{userId},#{addressId})
+        INSERT INTO `Order` (totalPrice, userId, addressId, status) VALUES (#{totalPrice},#{userId},#{addressId},#{status})
     </insert>
     <update id="updateOrder" parameterType="Order">
         UPDATE `Order`

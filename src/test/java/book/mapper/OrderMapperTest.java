@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -56,7 +57,13 @@ public class OrderMapperTest {
             e.printStackTrace();
         }
     }
-
+    @Test
+    public void updateStatus(){
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.put("orderId", 54);
+        hashMap.put("status", 1);
+        Assert.assertTrue(orderMapper.updateStatus(hashMap));
+    }
     @Test
     public void deleteOrder() {
         Assert.assertTrue(orderMapper.deleteOrder(5));

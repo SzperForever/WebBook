@@ -5,6 +5,7 @@ import book.service.ItemService;
 import book.service.OrderService;
 import book.vo.BookJson;
 import book.vo.MsgInfo;
+import book.vo.OrderInfo;
 import book.vo.OrderJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,8 @@ public class OrderController {
 
         try{
             Order order = Order.newInstance(totalPrice,orderJson.getAddressId(),orderJson.getUserId());
+            order.setStatus(0);
+            System.out.println("Order: " + order);
             orderService.addOrder(order);
             for (BookJson book : orderJson.getBooks()) {
                 boolean insertResult = itemService.addItem(order.getId(),book.getId(),book.getNum());
@@ -53,7 +56,6 @@ public class OrderController {
             return result;
         }
         catch (Exception e){
-            e.printStackTrace();
             result.put("state","fail");
             result.put("reason",e.getMessage());
             return result;
@@ -87,6 +89,29 @@ public class OrderController {
         else{
             msgInfo.setCode(0);
             msgInfo.setMsg("订单状态已是最新");
+        }
+        return msgInfo;
+    }
+    @RequestMapping(value = "/changeStatus", method = RequestMethod.POST)
+    @ResponseBody
+    public MsgInfo changeOrderStatus(OrderInfo orderInfo){
+        System.out.println("orderInfo: " + orderInfo);
+        MsgInfo msgInfo = new MsgInfo();
+        try{
+            if(orderService.changeOrderStatus(orderInfo)){
+                msgInfo.setCode(1);
+                msgInfo.setMsg("success");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            if (e.getMessage().equals("订单不存在")){
+                msgInfo.setMsg(e.getMessage());
+                msgInfo.setCode(0);
+            }
+            else{
+                msgInfo.setMsg(e.getMessage());
+                msgInfo.setCode(1);
+            }
         }
         return msgInfo;
     }

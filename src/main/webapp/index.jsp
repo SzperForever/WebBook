@@ -39,7 +39,7 @@
     }
 </script>
 <div id="login">
-    <h2>用户登陆</h2>
+    <h2></h2>
             <input class="input-text" type="text" name="userName" id="userName"/>
             <input class="input-text" type="password" name="passWord" id="password"/>
 
