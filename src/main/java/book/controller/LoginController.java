@@ -95,5 +95,10 @@ public class LoginController {
         }
         return msgInfo;
     }
+    @RequestMapping(value = "getUserByName", method = RequestMethod.POST)
+    @ResponseBody
+    public User getUserName(String name){
+        return userService.getUserByName(name);
+    }
 
 }

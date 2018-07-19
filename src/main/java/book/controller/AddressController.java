@@ -39,6 +39,5 @@ public class AddressController {
             msgInfo.setMsg("Success");
         }
         return msgInfo;
-
     }
 }

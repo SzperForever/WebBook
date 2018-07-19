@@ -37,6 +37,11 @@
     <select id="getAllOrderByUserId" resultMap="OrderMapper" parameterType="int">
         SELECT * FROM `Order` WHERE userId = #{userId}
     </select>
-
+    <update id="updateStatus" parameterType="java.util.HashMap">
+        UPDATE `Order` set status=#{status} where id=#{orderId}
+    </update>
+    <select id="getStatus" parameterType="int">
+        select status from `Order` where id=#{id}
+    </select>
 
 </mapper>
