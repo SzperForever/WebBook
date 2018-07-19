@@ -67,7 +67,7 @@ public class LoginController {
     }
     @RequestMapping(value = "unlockUser")
     @ResponseBody
-    public MsgInfo unlockUser(int userId){
+    public MsgInfo unlockUser(Integer userId){
         MsgInfo msgInfo = new MsgInfo();
         try{
             userService.unlockUser(userId);
@@ -82,7 +82,7 @@ public class LoginController {
     }
     @RequestMapping(value = "deleteUser", method = RequestMethod.POST)
     @ResponseBody
-    public MsgInfo deleteUser(int userId){
+    public MsgInfo deleteUser(Integer userId){
         MsgInfo msgInfo = new MsgInfo();
         try {
             userService.deleteUser(userId);

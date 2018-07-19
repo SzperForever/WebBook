@@ -17,6 +17,10 @@ public interface OrderDao {
     List<Order> getAllOrder();
 
     List<Order> getAllOrderByUserId(int userId);
+
     boolean updateStatus(HashMap hashMap);
+
+
+
     int getStatus(int id);
 }

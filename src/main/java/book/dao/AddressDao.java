@@ -19,7 +19,9 @@ public interface AddressDao {
 
     boolean deleteAddress(int id);
 
-    String getAddressNameByUserId(int userId);
+    String getAddressNameById(int addressId);
+
+
 
     List<Address> getAllAddress();
 

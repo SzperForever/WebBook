@@ -28,7 +28,7 @@ public class Book {
         book.setName(null);
         book.setDiscount(-1);
         book.setImgPath(null);
-        book.setStock(-1);
+        book.setStock(-2);
         book.setPrice(-1);
         return book;
     }

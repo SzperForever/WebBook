@@ -6,7 +6,7 @@
         <result property="userId" column="userId"></result>
         <result property="addressId" column="addressId"></result>
         <association property="username" column="userId" select="book.dao.UserDao.getUserNameById"/>
-        <association property="address" column="addressId" select="book.dao.AddressDao.getAddressNameByUserId"/>
+        <association property="address" column="addressId" select="book.dao.AddressDao.getAddressNameById"/>
         <association property="books" column="id" select="book.dao.ItemDao.getBooksByOrderId"/>
     </resultMap>
 

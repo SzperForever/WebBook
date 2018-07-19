@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class OrderController {
     @RequestMapping(value = "/submitOrder", method = RequestMethod.POST)
     @ResponseBody
     public HashMap<String,String> submitOrder(@RequestBody OrderJson orderJson){
-        System.out.println("order: " + orderJson);
         System.err.println("userID : " + orderJson.getUserId());
         System.err.println("addresID : " + orderJson.getAddressId());
         System.err.println("price : " + orderJson.getPrice());
@@ -66,24 +64,22 @@ public class OrderController {
     @RequestMapping(value = "/getAllOrder",method = RequestMethod.POST)
     @ResponseBody
     public List<Order> getAllOrder(Integer userId){
-        System.out.println("userId: " + userId);
         List<Order> orders = orderService.getAllOrder(userId);
         return orders;
     }
     @RequestMapping(value = "/changeOrderStatus", method = RequestMethod.POST)
     @ResponseBody
     public MsgInfo changeStatus(int OrderId, int virginState, int status){
-        System.out.println(OrderId + ' ' + virginState + ' ' + status);
         MsgInfo msgInfo = new MsgInfo();
         Order order = orderService.getOrderById(OrderId);
         order.setStatus(virginState);
         if(status != virginState){
             order.setStatus(status);
-            if(virginState == 0 && status == 1){
+            if(virginState == -1 && status == 0){
                 msgInfo.setCode(1);
                 msgInfo.setMsg("发货成功");
             }
-            if(virginState == 1 && status == 2){
+            if(virginState == 0 && status == 1){
                 msgInfo.setCode(1);
                 msgInfo.setMsg("收货成功");
             }

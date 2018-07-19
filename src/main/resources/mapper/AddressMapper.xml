@@ -14,8 +14,8 @@
     <select id="getAddressById" resultType="book.model.Address" parameterType="int">
         SELECT * FROM `Address` WHERE id=#{id}
     </select>
-    <select id="getAddressNameByUserId" resultType="java.lang.String" parameterType="int">
-        SELECT content FROM `Address` WHERE userId = #{id}
+    <select id="getAddressNameById" resultType="java.lang.String" parameterType="int">
+        SELECT content FROM `Address` WHERE Address.id = #{addressId}
     </select>
     <select id="getAllAddress" resultType="book.model.Address">
         SELECT * FROM `Address`
